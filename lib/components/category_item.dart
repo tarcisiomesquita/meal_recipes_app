@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meal_recipes_app/screens/categories_meals_screen.dart';
-
 import '../modals.dart/category.dart';
 
 class CategoryItem extends StatelessWidget {
