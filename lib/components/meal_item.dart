@@ -12,6 +12,13 @@ class MealItem extends StatelessWidget {
       AppRoutes.mealDetail,
       arguments: meal,
     );
+    //     .then(
+    //   (result) {
+    //     result == null
+    //         ? print('sem resultado')
+    //         : print('o nome da refeição é $result');
+    //   },
+    // );
   }
 
   @override
