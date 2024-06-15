@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:meal_recipes_app/components/main_drawer.dart';
 

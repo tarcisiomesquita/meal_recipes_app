@@ -4,8 +4,11 @@ import 'package:meal_recipes_app/modals.dart/screen.dart';
 import 'package:meal_recipes_app/screens/categories_screen.dart';
 import 'package:meal_recipes_app/screens/favorites_screen.dart';
 
+import '../modals.dart/meal.dart';
+
 class TabsScreen extends StatefulWidget {
-  const TabsScreen({super.key});
+  final List<Meal> favoriteMeals;
+  const TabsScreen(this.favoriteMeals, {super.key});
 
   @override
   State<TabsScreen> createState() => _TabsScreenState();
@@ -14,10 +17,16 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedScreenIndex = 0;
 
-  final List<Screen> _screens = [
-    const Screen('Categorias', CategoriesScreen()),
-    const Screen('Favoritos', FavoritesScreen())
-  ];
+  List<Screen>? _screens;
+
+  @override
+  void initState() {
+    _screens = [
+      const Screen('Categorias', CategoriesScreen()),
+      Screen('Favoritos', FavoritesScreen(widget.favoriteMeals))
+    ];
+    super.initState();
+  }
 
   void _selectScreen(int index) {
     setState(() => _selectedScreenIndex = index);
@@ -27,10 +36,10 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_screens[_selectedScreenIndex].title),
+        title: Text(_screens![_selectedScreenIndex].title),
       ),
       drawer: const MainDrawer(),
-      body: _screens[_selectedScreenIndex].screen,
+      body: _screens![_selectedScreenIndex].screen,
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         unselectedItemColor: Colors.white,
